@@ -11,7 +11,7 @@ public class CustomHttpFiltersAdapter extends HttpFiltersAdapter {
     @Override
     public HttpResponse clientToProxyRequest(HttpObject httpObject) {
 
-        if (originalRequest.getUri().contains("sinoptik")) {
+        if (originalRequest.getUri().contains("youtube")) {
             System.out.println(originalRequest.getUri());
             return new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.NOT_FOUND);
         }

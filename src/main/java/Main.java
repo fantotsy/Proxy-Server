@@ -12,7 +12,7 @@ public class Main {
         HttpFiltersSource filtersSource = new CustomHttpFiltersSourceAdapter();
         RootCertificateManager rootCertificateManager =
                 new RootCertificateManager(ROOT_CERTIFICATE_PATH, PRIVATE_KEY_PATH, PASSWORD_FOR_PRIVATE_KEY);
-        LittleProxy littleProxy = new LittleProxy(8087, filtersSource, rootCertificateManager, true);
+        LittleProxy littleProxy = new LittleProxy(8087, filtersSource, rootCertificateManager, false);
         littleProxy.start();
     }
 }
