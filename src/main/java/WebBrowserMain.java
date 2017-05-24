@@ -1,3 +1,16 @@
+import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.HttpResponse;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.core.har.Har;
+import net.lightbody.bmp.filters.RequestFilter;
+import net.lightbody.bmp.filters.ResponseFilter;
+import net.lightbody.bmp.proxy.CaptureType;
+import net.lightbody.bmp.util.HttpMessageContents;
+import net.lightbody.bmp.util.HttpMessageInfo;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,28 +25,65 @@ import java.io.IOException;
 
 public class WebBrowserMain {
     public static void main(String[] args) {
-//        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Home\\Downloads\\geckodriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 //
-//        Proxy proxy = new Proxy();
-//        proxy.setHttpProxy("localhost:8087");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--proxy-server=http://localhost:8087");
 //
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability(CapabilityType.PROXY, proxy);
+//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+//        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 //
-//        WebDriver driver = new FirefoxDriver(capabilities);
+//        ChromeDriver driver = new ChromeDriver(capabilities);
+//        driver.get("http://dev05-storefront.aws.gha.kfplc.com/checkout/technicalerror/");
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Home\\Downloads\\chromedriver.exe");
 
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        browserMob();
+    }
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--proxy-server=http://" + "localhost:8087");
+    public static void browserMob(){
+        // start the proxy
+        BrowserMobProxy proxy = new BrowserMobProxyServer();
+        proxy.addRequestFilter(new RequestFilter() {
+            @Override
+            public HttpResponse filterRequest(HttpRequest request, HttpMessageContents contents, HttpMessageInfo messageInfo) {
+                if (messageInfo.getOriginalUrl().contains("shop")) {
+                    request.setUri("http://dev05-storefront.aws.gha.kfplc.com/shopfhfgh");
+                }
+                return null;
+            }
+        });
+        proxy.addResponseFilter(new ResponseFilter() {
+            @Override
+            public void filterResponse(HttpResponse response, HttpMessageContents contents, HttpMessageInfo messageInfo) {
+               // if (messageInfo.getOriginalUrl().contains("shop")) {
+                    //response.setStatus(HttpResponseStatus.NOT_FOUND);
+                   // response.headers().add("Test", "test");
+              //  }
+            }
+        });
+        proxy.start(8087);
 
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        // get the Selenium proxy object
+        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
 
-        WebDriver driver = new ChromeDriver(options);
+        // configure it as a desired capability
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 
-        driver.get("https://www.youtube.com/?hl=ru&gl=RU");
+        // start the browser up
+        WebDriver driver = new ChromeDriver(capabilities);
+
+        // enable more detailed HAR capture, if desired (see CaptureType for the complete list)
+        proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+
+        // create a new HAR with the label "yahoo.com"
+        proxy.newHar("dev05-storefront.aws.gha.kfplc.com");
+
+        // open yahoo.com
+        driver.get("http://dev05-storefront.aws.gha.kfplc.com/shop");
+
+        // get the HAR data
+        Har har = proxy.getHar();
     }
 }

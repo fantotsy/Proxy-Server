@@ -10,8 +10,8 @@ import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 import java.io.File;
 
 public class Main {
-    private static final String ROOT_CERTIFICATE_PATH = "C:\\Users\\Home\\Desktop\\CA\\certificate.cer";
-    private static final String PRIVATE_KEY_PATH = "C:\\Users\\Home\\Desktop\\CA\\private-key.pem";
+    private static final String ROOT_CERTIFICATE_PATH = "C:\\Users\\Anton_Tsymbal\\Desktop\\CA\\certificate.cer";
+    private static final String PRIVATE_KEY_PATH = "C:\\Users\\Anton_Tsymbal\\Desktop\\CA\\private-key.pem";
     private static final String PASSWORD_FOR_PRIVATE_KEY = "password";
 
     public static void main(String[] args) {
