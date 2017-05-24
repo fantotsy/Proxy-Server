@@ -1,4 +1,4 @@
-package littleproxy;
+package proxy;
 
 import certificate.RootCertificateManager;
 import net.lightbody.bmp.mitm.PemFileCertificateSource;

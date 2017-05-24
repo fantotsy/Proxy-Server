@@ -1,4 +1,4 @@
-package filters;
+package filters.littleproxy;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.netty.buffer.ByteBuf;

@@ -1,13 +1,7 @@
 import certificate.RootCertificateManager;
-import filters.CustomHttpFiltersSourceAdapter;
-import littleproxy.LittleProxy;
-import net.lightbody.bmp.mitm.PemFileCertificateSource;
-import net.lightbody.bmp.mitm.manager.ImpersonatingMitmManager;
+import filters.littleproxy.CustomHttpFiltersSourceAdapter;
+import proxy.LittleProxy;
 import org.littleshoot.proxy.HttpFiltersSource;
-import org.littleshoot.proxy.HttpProxyServer;
-import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
-
-import java.io.File;
 
 public class Main {
     private static final String ROOT_CERTIFICATE_PATH = "C:\\Users\\Anton_Tsymbal\\Desktop\\CA\\certificate.cer";
