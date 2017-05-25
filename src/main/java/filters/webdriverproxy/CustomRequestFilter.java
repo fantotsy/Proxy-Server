@@ -7,6 +7,12 @@ import net.lightbody.bmp.util.HttpMessageContents;
 import net.lightbody.bmp.util.HttpMessageInfo;
 
 public class CustomRequestFilter implements RequestFilter {
+//    private final String filterType;
+//
+//    public CustomRequestFilter(String filterType) {
+//        this.filterType = filterType;
+//    }
+
     @Override
     public HttpResponse filterRequest(HttpRequest request, HttpMessageContents contents, HttpMessageInfo messageInfo) {
         if (messageInfo.getOriginalUrl().contains("channel")) {
