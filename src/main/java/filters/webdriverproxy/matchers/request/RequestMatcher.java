@@ -1,4 +1,4 @@
-package filters.webdriverproxy;
+package filters.webdriverproxy.matchers.request;
 
 import io.netty.handler.codec.http.HttpMethod;
 import net.lightbody.bmp.util.HttpMessageContents;

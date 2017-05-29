@@ -1,7 +1,5 @@
-import filters.webdriverproxy.CustomRequestFilter;
-import filters.webdriverproxy.CustomResponseFilter;
-import filters.webdriverproxy.NotFoundRequestModifier;
-import filters.webdriverproxy.RequestMatcher;
+import filters.webdriverproxy.filters.request.impl.NotFoundRequestModifier;
+import filters.webdriverproxy.matchers.request.RequestMatcher;
 import io.netty.handler.codec.http.HttpMethod;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
@@ -56,8 +54,8 @@ public class WebBrowserMain {
 //
        // driver.get("https://www.youtube.com/?hl=ru&gl=RU");
 
-        //chrome();
-        firefox();
+        chrome();
+        //firefox();
     }
 
     public static void chrome(){
@@ -87,7 +85,7 @@ public class WebBrowserMain {
         RequestMatcher requestMatcher = new RequestMatcher().containingStringInUrl("login");
 
         BrowserMobProxy proxy = new BrowserMobProxyServer();
-        proxy.addRequestFilter(new CustomRequestFilter(requestMatcher));
+        proxy.addRequestFilter(new NotFoundRequestModifier(requestMatcher));
         proxy.setMitmDisabled(true);
         proxy.start(8087);
 
