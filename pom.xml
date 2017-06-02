@@ -28,44 +28,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.ganskef</groupId>
-            <artifactId>littleproxy-mitm</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.littleshoot</groupId>
-            <artifactId>littleproxy</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-
-        <!-- new dependency on the MITM module -->
-        <dependency>
-            <groupId>net.lightbody.bmp</groupId>
-            <artifactId>mitm</artifactId>
-            <version>2.1.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <dependency>
             <groupId>net.lightbody.bmp</groupId>
             <artifactId>browsermob-core</artifactId>
             <version>2.1.4</version>
             <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.seleniumhq.selenium</groupId>-->
-                    <!--<artifactId>selenium-api</artifactId>-->
-                <!--</exclusion>-->
+            <!--<exclusion>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-api</artifactId>-->
+            <!--</exclusion>-->
             <!--</exclusions>-->
         </dependency>
-
-
-
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -76,31 +48,56 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>3.4.0</version>
+            <version>2.53.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>3.4.0</version>
+            <version>2.53.0</version>
+        </dependency>
+
+
+        <dependency>
+        <groupId>com.github.ganskef</groupId>
+        <artifactId>littleproxy-mitm</artifactId>
+        <version>1.1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.4.0</version>
+        <groupId>org.littleshoot</groupId>
+        <artifactId>littleproxy</artifactId>
+        <version>1.1.2</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.3</version>
+        <groupId>net.lightbody.bmp</groupId>
+        <artifactId>mitm</artifactId>
+        <version>2.1.4</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.5.3</version>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.4</version>
+        </dependency>
+
+        <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-api</artifactId>
+        <version>2.53.0</version>
+        </dependency>
+
+        <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.3</version>
+        </dependency>
+
+        <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>4.5.3</version>
         </dependency>
 
         <dependency>
@@ -110,9 +107,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
         </dependency>
     </dependencies>
 </project>

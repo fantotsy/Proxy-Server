@@ -1,27 +1,47 @@
 package filters.webdriverproxy.matchers.request;
 
+import filters.webdriverproxy.filters.request.RequestModifier;
 import io.netty.handler.codec.http.HttpMethod;
 import net.lightbody.bmp.util.HttpMessageContents;
 import net.lightbody.bmp.util.HttpMessageInfo;
 
-public class RequestMatcher {
+
+public final class RequestMatcher {
     private String containingStringInUrl;
     private String containingStringInBody;
     private HttpMethod usingHttpMethod;
 
-    public RequestMatcher containingStringInUrl(String string) {
-        containingStringInUrl = string;
-        return this;
+    private RequestMatcher(){
+
     }
 
-    public RequestMatcher containingStringInBody(String string) {
-        containingStringInBody = string;
-        return this;
+    public class RequestMatcherBuilder {
+        private RequestMatcherBuilder(){
+
+        }
+
+        public RequestMatcherBuilder containingStringInUrl(String string) {
+            RequestMatcher.this.containingStringInUrl = string;
+            return this;
+        }
+
+        public RequestMatcherBuilder containingStringInBody(String string) {
+            RequestMatcher.this.containingStringInBody = string;
+            return this;
+        }
+
+        public RequestMatcherBuilder usingHttpMethod(HttpMethod httpMethod) {
+            RequestMatcher.this.usingHttpMethod = httpMethod;
+            return this;
+        }
+
+        public RequestMatcher build(){
+            return RequestMatcher.this;
+        }
     }
 
-    public RequestMatcher usingHttpMethod(HttpMethod httpMethod) {
-        usingHttpMethod = httpMethod;
-        return this;
+    public static RequestMatcherBuilder builder(){
+        return new RequestMatcher().new RequestMatcherBuilder();
     }
 
     public boolean matches(HttpMessageContents httpMessageContents, HttpMessageInfo httpMessageInfo) {
